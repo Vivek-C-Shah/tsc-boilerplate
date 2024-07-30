@@ -1,0 +1,5 @@
+{
+  "watch": ["."],
+  "ext": "ts,json",
+  "exec": "tsc -p tsconfig.json && node dist/app.js"
+}

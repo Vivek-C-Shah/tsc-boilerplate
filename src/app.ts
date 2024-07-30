@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import ErrorHandler from "./utils/errorHandler";
 
 const allowedOrigins = [
   "*"
@@ -25,9 +26,9 @@ app.use(
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    // origin: process.env.FRONTEND_URL,
+    // credentials: true,
+    // methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
@@ -39,12 +40,13 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(ErrorMiddleware);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/", (req, res, next) => {
+  res.send("Hello World");
 });
 
+
+app.use(ErrorMiddleware);
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });

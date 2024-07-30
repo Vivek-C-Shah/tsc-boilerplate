@@ -1,15 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-class CustomError extends Error {
-  statusCode?: number;
-
-  constructor(message?: string, statusCode?: number) {
-    super(message); // Pass the message to the Error constructor
-    this.statusCode = statusCode;
-  }
-}
+import type { Request, Response, NextFunction } from "express";
+import type ErrorHandler from "../utils/errorHandler";
 
 const ErrorMiddleware = (
-  err: CustomError,
+  err: ErrorHandler,
   req: Request,
   res: Response,
   next: NextFunction

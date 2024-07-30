@@ -23,19 +23,19 @@ app.use((0, express_session_1.default)({
     secret: "SECRET",
 }));
 app.use((0, cors_1.default)({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+// origin: process.env.FRONTEND_URL,
+// credentials: true,
+// methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 app.use(express_1.default.urlencoded({
     extended: true,
 }));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use(Error_1.default);
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+app.get("/", (req, res, next) => {
+    res.send("Hello World");
 });
+app.use(Error_1.default);
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
 });
